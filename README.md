@@ -2,7 +2,7 @@
 Service discovery test for multi-node cluster on a single host.
 
 ## Motivation
-In a separate project, the migration from a working development environment to a production environment exposed issues with the portability of the service discovery topology. An alternative service discovery topology needed to be identified.
+In a separate project, the migration from a working development environment to a production environment exposed issues with the portability of the service discovery topology using ```docker``` on a RHEL hiost. An alternative service discovery topology needed to be identified.
 
 ### Development Environment
 A working service discovery topology:
@@ -13,7 +13,7 @@ A working service discovery topology:
 ### Production Environment
 A target service discovery topology:
 
-* Single Host: RHEL (7.x or 7.1) with [etcd](https://github.com/coreos/etcd) managing system-wide configuration data as key/value pairs.
+* Single Host: RHEL (7.x) with [etcd](https://github.com/coreos/etcd) managing system-wide configuration data as key/value pairs.
 * Multiple Docker Containers: Ubuntu 14.04 with [etcdctl](https://github.com/coreos/etcd) for fetching configuration data.
 
 After exhaustive software version, OS setting changes (including tweaking SELinux), and playing with various ```etcd``` configuration settings; it was determined that this was not a viable target environment.
