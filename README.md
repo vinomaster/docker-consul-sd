@@ -16,7 +16,7 @@ A target service discovery topology:
 * Single Host: RHEL (7.x) with [etcd](https://github.com/coreos/etcd) managing system-wide configuration data as key/value pairs.
 * Multiple Docker Containers: Ubuntu 14.04 with [etcdctl](https://github.com/coreos/etcd) for fetching configuration data.
 
-After exhaustive software version, OS setting changes (including tweaking SELinux), and playing with various ```etcd``` configuration settings; it was determined that this was not a viable target environment.
+After exhaustive software version tests, OS setting changes (including tweaking SELinux), and playing with various ```etcd``` configuration settings; it was determined that this was not a viable target environment.
 
 ## Objective
 Validate that service discovery on a single host (RHEL 7.x) between multiple docker containers (Ubuntu 14.04) is possible with an alternative Key/Value Storage tool.
