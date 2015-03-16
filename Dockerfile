@@ -7,7 +7,7 @@ RUN apt-get -y update
 RUN apt-get -y -f install python3-setuptools
 RUN easy_install3 pip
 RUN apt-get -y -f install vim make git lxc golang unzip curl
-ENV PATH /bin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin
+ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Install Consul
 ADD https://dl.bintray.com/mitchellh/consul/0.3.1_linux_amd64.zip /tmp/consul.zip
