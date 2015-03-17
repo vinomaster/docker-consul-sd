@@ -2,7 +2,7 @@
 Service discovery test for multi-node cluster on a single host.
 
 ## Motivation
-In a separate project, the migration from a working development environment to a production environment exposed issues with the portability of the service discovery topology using ```docker``` on a RHEL hiost. An alternative service discovery topology needed to be identified.
+In a separate project, the migration from a working development environment to a production environment exposed issues with the portability of the service discovery topology using ```docker``` on a RHEL host. An alternative service discovery topology needed to be identified.
 
 ### Development Environment
 A working service discovery topology:
