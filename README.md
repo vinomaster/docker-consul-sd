@@ -70,6 +70,7 @@ Without having to do any linking at the ```docker``` command-level and without h
 
 * [Docker Ecosystem Diagram](http://comp.photo777.org/wp-content/uploads/2014/09/Docker-ecosystem-7.1.pdf)
 * [Consul v. etcd](https://aphyr.com/posts/316-call-me-maybe-etcd-and-consul) is a great article on the status and capabilities of both Service Discovery solutions.
+* [ConsulCtl](https://github.com/vinomaster/consulctl): A command line utility for Consul.
 * **Easy Attach**: To simplify the tasks associated with attaching to a docker container on RHEL 7.x, see Eric Wedaa's [dockermenu](https://github.com/wedaa/dockermenu) which handles the ```nsenter``` commands for you.
 
 ```
