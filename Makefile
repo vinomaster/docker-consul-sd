@@ -27,5 +27,6 @@ build:
 
 # Setup Test Env
 test:
-	@consulcluster
+	chmod +x consulcluster
+	./consulcluster
 	@docker ps -a
