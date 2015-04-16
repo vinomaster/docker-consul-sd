@@ -31,16 +31,40 @@ Explore the feasibility of using [Consul.io](http://www.consul.io/intro/index.ht
 
 ## Usage
 
-### Prepare Environment
+### Single Node Environment
+
+#### Prepare Environment
 
 * ```make build```: Build the Ubuntu+Consul docker image.
-* ```make test```: Construct Cluster
+* ```make start-single```: Construct Cluster
 
-### Validate Environment
+#### Validate Environment
 
 * ```docker ps -a```:
 ```
-    ONTAINER ID        IMAGE                  COMMAND                CREATED             STATUS              PORTS                                                                            NAMES
+CONTAINER ID        IMAGE                                  COMMAND                CREATED             STATUS              PORTS                                                                                                                                                                    NAMES
+18f802847e66        trusty/consul:latest                   "/usr/local/sbin/con   20 hours ago        Up 20 hours         8600/udp, 127.0.0.1:8400->8400/tcp, 172.17.42.1:8400->8400/tcp, 127.0.0.1:8500->8500/tcp, 172.17.42.1:8500->8500/tcp, 127.0.0.1:8600->53/udp, 172.17.42.1:8600->53/udp   consulserver
+```
+
+* Run Curl Tests:
+```
+curl -L http://127.0.0.1:8500/v1/kv/web/key1 -XPUT -d value="Hello world"
+curl -L http://127.0.0.1:8500/v1/kv/web/key2 -XPUT -d value="Goodbye world"
+curl -L http://127.0.0.1:8500/v1/kv/web/key1 -XGET
+curl http://127.0.0.1:8500/v1/kv/web/?recurse
+
+### Cluster Environment
+
+#### Prepare Environment
+
+* ```make build```: Build the Ubuntu+Consul docker image.
+* ```make start-cluster```: Construct Cluster
+
+#### Validate Environment
+
+* ```docker ps -a```:
+```
+CONTAINER ID        IMAGE                  COMMAND                CREATED             STATUS              PORTS                                                                            NAMES
 7f4cc7a0eb3d        trusty/consul:latest   "/usr/local/sbin/con   11 seconds ago      Up 11 seconds       8600/udp, 0.0.0.0:8400->8400/tcp, 0.0.0.0:8500->8500/tcp, 0.0.0.0:8600->53/udp   node4
 928b1558e775        trusty/consul:latest   "/usr/local/sbin/con   12 seconds ago      Up 11 seconds       8500/tcp, 8600/udp, 8400/tcp                                                     node3
 b2f64a26371c        trusty/consul:latest   "/usr/local/sbin/con   12 seconds ago      Up 11 seconds       8400/tcp, 8500/tcp, 8600/udp                                                     node2
@@ -57,10 +81,10 @@ node2  172.17.0.87:8301  alive   server  0.3.1  2
 ```
 * Run Curl Tests:
 ```
-curl -L http://localhost:8500/v1/kv/web/key1 -XPUT -d value="Hello world"
-curl -L http://localhost:8500/v1/kv/web/key2 -XPUT -d value="Goodbye world"
-curl -L http://localhost:8500/v1/kv/web/key1 -XGET
-curl http://localhost:8500/v1/kv/web/?recurse
+curl -L http://127.0.0.1:8500/v1/kv/web/key1 -XPUT -d value="Hello world"
+curl -L http://127.0.0.1:8500/v1/kv/web/key2 -XPUT -d value="Goodbye world"
+curl -L http://127.0.0.1:8500/v1/kv/web/key1 -XGET
+curl http://127.0.0.1:8500/v1/kv/web/?recurse
 ```
 
 ## Conclusion
