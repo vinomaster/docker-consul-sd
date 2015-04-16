@@ -1,17 +1,6 @@
 #!/bin/bash
 
-#  Create a four node Service Discovery Cluster
-#       Node1 = Lead Cluster Server
-#       Node2 = Cluster Server
-#       Node3 = Cluster Server
-#       Node4 = Client
-docker run -d --name node1 -h node1 trusty/consul /usr/local/sbin/consul agent \
-    -data-dir=/tmp/consul -client=0.0.0.0 -server -bootstrap-expect 3
-JOIN_IP=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' node1)
-docker run -d --name node2 -h node2 trusty/consul /usr/local/sbin/consul agent \
-    -data-dir=/tmp/consul -server -join $JOIN_IP
-docker run -d --name node3 -h node3 trusty/consul /usr/local/sbin/consul agent \
-    -data-dir=/tmp/consul -server -join $JOIN_IP
-docker run -d -p 8400:8400 -p 8500:8500 -p 8600:53/udp --name node4 -h node4 trusty/consul /usr/local/sbin/consul agent \
-    -data-dir=/tmp/consul -join $JOIN_IP
+docker stop consulserver
+docker rm consulserver
+docker run -d -p 127.0.0.1:8400:8400 -p 127.0.0.1:8500:8500 -p 127.0.0.1:8600:53/udp -p 172.17.42.1:8400:8400 -p 172.17.42.1:8500:8500 -p 172.17.42.1:8600:53/udp --name consulserver -h consulserver trusty/consul /usr/local/sbin/consul agent -server -client=0.0.0.0 -bootstrap-expect 1 -data-dir /tmp/consul
 docker ps -a
